@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Punctum — Қазақ тілінің тыныс белгілері</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Punctum</div>
+
+    <nav>
+        <a href="#home">Басты бет</a>
+        <a href="#rules">Ережелер</a>
+        <a href="#practice">Жаттығу</a>
+        <a href="#about">Біз туралы</a>
+    </nav>
+</header>
+
+
+<main>
+
+    <!-- Басты бет -->
+    <section id="home" class="hero">
+
+        <div class="hero-text">
+            <p class="small-title">ҚАЗАҚ ТІЛІН ҮЙРЕНУДІҢ ЖАҢА ӘДІСІ</p>
+
+            <h1>
+                Тыныс белгілерін
+                <span>оңай үйрен.</span>
+            </h1>
+
+            <p>
+                Қазақ тіліндегі тыныс белгілерінің ережелерін
+                түсініп, мысалдар арқылы меңгер және
+                интерактивті тапсырмалар арқылы біліміңді тексер.
+            </p>
+
+            <div class="buttons">
+                <a href="#rules" class="btn">Ережелерді оқу</a>
+                <a href="#practice" class="btn secondary">
+                    Жаттығуды бастау
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-symbol">
+            <span>?</span>
+        </div>
+
+    </section>
+
+
+    <!-- Ережелер -->
+    <section id="rules">
+
+        <div class="section-title">
+            <p>БІЛІМ</p>
+            <h2>Тыныс белгілері</h2>
+        </div>
+
+
+        <div class="rules-container">
+
+            <div class="rule-card">
+                <div class="symbol">,</div>
+
+                <h3>Үтір</h3>
+
+                <p>
+                    Сөйлемдегі сөздер мен сөйлем мүшелерін
+                    ажырату үшін қолданылады.
+                </p>
+
+                <button onclick="showRule('comma')">
+                    Ережені көру
+                </button>
+            </div>
+
+
+            <div class="rule-card">
+                <div class="symbol">.</div>
+
+                <h3>Нүкте</h3>
+
+                <p>
+                    Аяқталған ойды білдіретін хабарлы
+                    сөйлемнің соңына қойылады.
+                </p>
+
+                <button onclick="showRule('dot')">
+                    Ережені көру
+                </button>
+            </div>
+
+
+            <div class="rule-card">
+                <div class="symbol">!</div>
+
+                <h3>Леп белгісі</h3>
+
+                <p>
+                    Көңіл күйді, қуанышты, таңдануды,
+                    бұйрықты білдіретін сөйлемдерде қойылады.
+                </p>
+
+                <button onclick="showRule('exclamation')">
+                    Ережені көру
+                </button>
+            </div>
+
+
+            <div class="rule-card">
+                <div class="symbol">?</div>
+
+                <h3>Сұрау белгісі</h3>
+
+                <p>
+                    Сұраулы сөйлемдердің соңына
+                    қойылады.
+                </p>
+
+                <button onclick="showRule('question')">
+                    Ережені көру
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Жаттығу -->
+    <section id="practice" class="practice">
+
+        <div class="section-title">
+            <p>ӨЗІҢДІ ТЕКСЕР</p>
+            <h2>Жаттығу</h2>
+        </div>
+
+        <div class="quiz">
+
+            <h3>
+                Дұрыс тыныс белгісін таңда:
+            </h3>
+
+            <p class="question">
+                Бүгін ауа райы қандай__
+            </p>
+
+            <div class="answers">
+
+                <button onclick="checkAnswer('.', this)">
+                    .
+                </button>
+
+                <button onclick="checkAnswer('!', this)">
+                    !
+                </button>
+
+                <button onclick="checkAnswer('?', this)">
+                    ?
+                </button>
+
+                <button onclick="checkAnswer(',', this)">
+                    ,
+                </button>
+
+            </div>
+
+            <p id="result"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Біз туралы -->
+    <section id="about">
+
+        <div class="about">
+
+            <p> PUNCTUM</p>
+
+            <h2>
+                Қазақ тілінің тыныс белгілерін
+                бірге үйренейік!
+            </h2>
+
+            <p>
+                Punctum — қазақ тілінің пунктуациясын
+                қарапайым әрі түсінікті түрде үйренуге
+                арналған білім беру платформасы.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 Punctum</p>
+    <p>Қазақ тілін бірге дамытайық.</p>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
