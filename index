@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punctum.kz — Қазақ пунктуациясы</title>
+
+<style>
+:root{
+  --green:#04AA6D;
+  --green-dark:#03875b;
+  --green-darker:#046a48;
+  --green-light:#e9f7f1;
+  --green-lighter:#f4fbf8;
+  --bg:#ffffff;
+  --sidebar-bg:#f6f8f7;
+  --text:#1c2b26;
+  --muted:#5c6b65;
+  --border:#dfe7e3;
+  --red:#d64545;
+  --yellow:#f0c419;
+  --radius:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:"Segoe UI","Trebuchet MS",Verdana,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+}
+
+/* ============ HEADER ============ */
+header{
+  height:56px;
+  background:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 1px 3px rgba(0,0,0,.12);
+}
+.logo{
+  color:#fff;
+  font-size:21px;
+  font-weight:700;
+  text-decoration:none;
+  letter-spacing:.2px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+}
+.logo .mark{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;background:#fff;color:var(--green-dark);
+  border-radius:5px;font-weight:800;font-size:16px;
+}
+.beta{
+  display:inline-block;margin-left:6px;background:rgba(255,255,255,.22);
+  color:#fff;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;
+  vertical-align:middle;letter-spacing:.4px;
+}
+.header-right{display:flex;align-items:center;gap:10px;}
+.search{
+  width:200px;padding:8px 12px;border:none;border-radius:5px;outline:none;font-size:14px;
+}
+.hdr-btn{
+  border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;
+  padding:7px 14px;border-radius:5px;font-weight:600;cursor:pointer;font-size:14px;
+}
+.hdr-btn:hover{background:rgba(255,255,255,.15);}
+.hdr-btn.solid{background:#fff;color:var(--green-dark);border:none;}
+.hdr-btn.solid:hover{background:#eafff5;}
+.user-chip{
+  color:#fff;font-size:13.5px;background:rgba(255,255,255,.18);
+  padding:6px 12px;border-radius:16px;display:flex;align-items:center;gap:8px;
+}
+.user-chip b{font-weight:700;}
+
+/* ============ LAYOUT ============ */
+.app{display:flex;min-height:calc(100vh - 56px);}
+
+/* ============ SIDEBAR ============ */
+.sidebar{
+  width:250px;flex-shrink:0;background:var(--sidebar-bg);
+  border-right:1px solid var(--border);overflow-y:auto;
+  padding:14px 0 40px;
+}
+.sec-title{
+  color:#8a958f;font-size:11.5px;font-weight:700;padding:16px 22px 6px;
+  letter-spacing:.4px;
+}
+.nav-link{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 22px;color:#28352f;text-decoration:none;font-size:14.5px;
+  cursor:pointer;border-left:3px solid transparent;transition:.12s;
+}
+.nav-link .sym{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;font-size:12px;font-weight:700;color:var(--green-dark);
+  background:var(--green-light);border-radius:4px;flex-shrink:0;
+}
+.nav-link:hover{background:#eef4f1;}
+.nav-link.active{background:var(--green-light);border-left-color:var(--green);color:var(--green-darker);font-weight:700;}
+.nav-link .prog-dot{
+  margin-left:auto;font-size:10.5px;color:var(--muted);font-weight:600;
+}
+
+/* ============ MAIN ============ */
+main{flex:1;overflow-y:auto;padding:38px 48px 80px;}
+.page{display:none;max-width:920px;}
+.page.active-page{display:block;}
+
+h1{font-size:32px;margin-bottom:8px;color:var(--text);}
+.subtitle{color:var(--muted);font-size:16px;margin-bottom:22px;max-width:70ch;}
+.crumb{color:var(--green-dark);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+
+.beta-box{
+  background:var(--green-light);border:1px solid #cdeee0;
+  padding:16px 18px;border-radius:var(--radius);margin-bottom:26px;font-size:14.5px;
+}
+.beta-box strong{color:var(--green-darker);}
+
+.note-box{
+  background:#fffaf0;border:1px solid #f3e2b3;border-left:4px solid var(--yellow);
+  padding:14px 16px;border-radius:4px;margin:18px 0;font-size:14px;color:#5c4e1f;
+}
+
+/* ============ HOME CARDS ============ */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:10px;}
+.card{
+  background:#fff;border:1px solid var(--border);padding:20px;border-radius:var(--radius);
+  cursor:pointer;transition:.15s;
+}
+.card:hover{border-color:var(--green);box-shadow:0 4px 14px rgba(4,170,109,.12);transform:translateY(-2px);}
+.card-icon{
+  width:38px;height:38px;border-radius:7px;background:var(--green-light);color:var(--green-dark);
+  display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin-bottom:12px;
+}
+.card h3{margin-bottom:5px;font-size:16.5px;}
+.card p{color:var(--muted);font-size:13.5px;line-height:1.45;}
+.card .cprog{margin-top:10px;font-size:12px;color:var(--green-dark);font-weight:700;}
+
+/* ============ RULE CARDS ============ */
+.rule-list{margin-top:22px;}
+.rule-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px 20px;margin-bottom:12px;
+}
+.rule-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;background:var(--green);color:#fff;font-weight:700;font-size:13px;
+  border-radius:50%;margin-right:10px;flex-shrink:0;
+}
+.rule-head{display:flex;align-items:flex-start;gap:2px;}
+.rule-body{font-size:15px;line-height:1.7;}
+.rule-body q, .rule-body .kz-quote{color:#1c2b26;}
+.rule-example{
+  margin-top:10px;background:var(--green-lighter);border-left:3px solid var(--green);
+  padding:10px 14px;border-radius:4px;font-size:14.5px;color:#2b3934;
+}
+.rule-src{color:var(--muted);font-style:italic;font-size:13px;}
+.chargrid{
+  display:flex;align-items:center;gap:14px;background:var(--green-dark);color:#fff;
+  padding:24px 28px;border-radius:var(--radius);margin-bottom:22px;
+}
+.chargrid .big{font-size:46px;font-weight:800;}
+.chargrid .lbl{font-size:14.5px;opacity:.92;line-height:1.5;}
+
+/* ============ EXERCISES ============ */
+.exercise{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:16px;
+}
+.exercise-number{
+  display:inline-block;background:var(--green-light);color:var(--green-darker);
+  padding:5px 10px;border-radius:5px;font-size:12px;font-weight:700;margin-bottom:12px;
+}
+.question{font-size:18px;font-weight:600;line-height:1.55;margin-bottom:16px;}
+.options{display:flex;flex-wrap:wrap;gap:9px;}
+.option{
+  background:#fff;border:1px solid #c9d2ce;padding:9px 16px;border-radius:6px;
+  font-size:14.5px;cursor:pointer;transition:.1s;
+}
+.option:hover{border-color:var(--green);background:var(--green-light);}
+.option.correct{background:var(--green);color:#fff;border-color:var(--green);}
+.option.wrong{background:var(--red);color:#fff;border-color:var(--red);}
+.option[disabled]{cursor:default;}
+.result{margin-top:12px;font-weight:600;font-size:14.5px;}
+.explain{margin-top:6px;color:var(--muted);font-size:13.5px;}
+.section-title-lg{font-size:22px;margin:34px 0 14px;color:var(--text);border-bottom:2px solid var(--green-light);padding-bottom:8px;}
+
+/* ============ AI CHECKER ============ */
+.ai-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+textarea{
+  width:100%;min-height:170px;border:1px solid #c9d2ce;border-radius:6px;padding:14px;
+  font-size:16px;resize:vertical;outline:none;font-family:inherit;
+}
+textarea:focus{border-color:var(--green);}
+.check-button{
+  margin-top:14px;background:var(--green);color:#fff;border:none;padding:11px 22px;
+  border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;
+}
+.check-button:hover{background:var(--green-dark);}
+.ai-result{margin-top:18px;background:var(--green-light);padding:16px 18px;border-radius:6px;display:none;font-size:14.5px;}
+
+/* ============ AUTH MODAL ============ */
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(15,25,20,.5);z-index:200;
+  align-items:center;justify-content:center;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:#fff;border-radius:8px;padding:28px;width:340px;max-width:90vw;
+  box-shadow:0 12px 40px rgba(0,0,0,.2);
+}
+.modal h2{font-size:20px;margin-bottom:4px;}
+.modal .sub{color:var(--muted);font-size:13.5px;margin-bottom:18px;}
+.modal input{
+  width:100%;padding:10px 12px;border:1px solid #c9d2ce;border-radius:6px;
+  margin-bottom:10px;font-size:14.5px;outline:none;
+}
+.modal input:focus{border-color:var(--green);}
+.modal .primary{
+  width:100%;background:var(--green);color:#fff;border:none;padding:11px;
+  border-radius:6px;font-weight:700;cursor:pointer;font-size:14.5px;margin-top:4px;
+}
+.modal .primary:hover{background:var(--green-dark);}
+.modal .switch{text-align:center;font-size:13px;color:var(--muted);margin-top:12px;}
+.modal .switch a{color:var(--green-dark);cursor:pointer;font-weight:600;}
+.modal .close{position:absolute;top:14px;right:16px;cursor:pointer;color:var(--muted);font-size:18px;}
+.modal-wrap{position:relative;}
+.modal-msg{font-size:13px;margin-top:8px;min-height:16px;}
+.modal-msg.err{color:var(--red);}
+.modal-msg.ok{color:var(--green-dark);}
+
+/* ============ CABINET ============ */
+.stat-row{display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap;}
+.stat-box{
+  flex:1;min-width:150px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px 18px;
+}
+.stat-box .num{font-size:28px;font-weight:800;color:var(--green-dark);}
+.stat-box .lbl{font-size:13px;color:var(--muted);margin-top:2px;}
+.cabinet-cat{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;
+}
+.cabinet-cat .sym2{
+  width:34px;height:34px;border-radius:6px;background:var(--green-light);color:var(--green-dark);
+  display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;
+}
+.bar-track{flex:1;height:8px;background:#eef2f0;border-radius:6px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--green);border-radius:6px;}
+.cabinet-cat .pct{font-size:13px;font-weight:700;color:var(--green-dark);width:40px;text-align:right;}
+.login-cta{
+  background:var(--green-light);border:1px solid #cdeee0;border-radius:var(--radius);
+  padding:28px;text-align:center;
+}
+.login-cta button{margin-top:10px;}
+
+/* ============ WEEKLY TASK ============ */
+.weekly-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px;}
+.weekly-passage{font-size:16.5px;line-height:1.9;}
+.blank-btn{
+  display:inline-block;background:var(--green-light);border:1px dashed var(--green);
+  color:var(--green-darker);padding:1px 9px;border-radius:4px;font-weight:700;cursor:pointer;font-size:15px;
+}
+.blank-btn.revealed{background:var(--green);color:#fff;border-style:solid;}
+.weekly-reveal{
+  margin-top:16px;background:var(--green-lighter);border-left:3px solid var(--green);
+  padding:12px 16px;border-radius:4px;font-size:14px;display:none;
+}
+
+footer.credit{margin-top:40px;color:var(--muted);font-size:12.5px;}
+
+@media(max-width:900px){
+  .sidebar{width:210px;}
+  main{padding:26px 20px;}
+  .cards{grid-template-columns:1fr;}
+  .search{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" onclick="showPage('home')">
+    <span class="mark">Р</span>
+    punctum.kz
+    <span class="beta">BETA</span>
+  </a>
+  <div class="header-right">
+    <input class="search" id="searchInput" type="text" placeholder="Тақырыпты іздеу..." onkeyup="searchRules(event)">
+    <div id="authArea">
+      <button class="hdr-btn" onclick="openModal('login')">Кіру</button>
+      <button class="hdr-btn solid" onclick="openModal('signup')">Тіркелу</button>
+    </div>
+  </div>
+</header>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sec-title">НЕГІЗГІ</div>
+    <a class="nav-link active" data-page="home" onclick="showPage('home')"><span class="sym">Б</span>Басты бет</a>
+    <a class="nav-link" data-page="cabinet" onclick="showPage('cabinet')"><span class="sym">К</span>Кабинетім</a>
+    <a class="nav-link" data-page="weekly" onclick="showPage('weekly')"><span class="sym">А</span>Апта тапсырмасы</a>
+
+    <div class="sec-title">AI ҚҰРАЛДАР</div>
+    <a class="nav-link" data-page="ai" onclick="showPage('ai')"><span class="sym">✨</span>AI Тексеру</a>
+
+    <div class="sec-title">ЕРЕЖЕЛЕР</div>
+    <div id="sidebarRules"></div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+
+    <!-- HOME -->
+    <section id="home" class="page active-page">
+      <h1>Пунктуация ережелері</h1>
+      <p class="subtitle">Punctum.kz — қазақ тіліндегі тыныс белгілерін дұрыс қолдануды үйрететін білім беру платформасы. Әр ережені оқып, астындағы тапсырмаларды шешіп, прогресіңізді бақылаңыз. Толық ережелер Рәбиға Сыздық "Қазақ тілінің анықтағышы" кітабы негізінде жасалған </p>
+      <div class="beta-box">
+        <strong>🚀 Punctum Beta</strong><br>
+        Сайттың алғашқы beta-нұсқасы. 11 санаттағы толық пунктуация ережелерін оқыңыз, әрбір ереже соңындағы тапсырмаларды орындаңыз және есептік жазба ашып, біліміңіздің қалай өсіп жатқанын бақылаңыз.
+      </div>
+      <div class="cards" id="homeCards"></div>
+    </section>
+
+    <!-- CABINET -->
+    <section id="cabinet" class="page">
+      <div class="crumb">Жеке кабинет</div>
+      <h1>Менің прогресім</h1>
+      <p class="subtitle">Барлық санат бойынша орындалған тапсырмалар мен дұрыс жауап пайызы осында сақталады.</p>
+      <div id="cabinetContent"></div>
+    </section>
+
+    <!-- WEEKLY TASK -->
+    <section id="weekly" class="page">
+      <div class="crumb">Апта тапсырмасы</div>
+      <h1>Мәтіндегі тыныс белгілерін тап</h1>
+      <p class="subtitle">Төмендегі үзінді М.Әуезовтің «Абай жолы» романынан алынған (§23 мысалы). Нөмірленген орындарға қандай тыныс белгісі қойылу керегін ойланып, сосын жауапты ашыңыз.</p>
+      <div class="weekly-box">
+        <p class="weekly-passage">
+          «Абайдың ілгері созып келе жатқан оң қолы жібек шымылдыққа тиген кезде, алдынан қарсы қозғалып келе жатқан Тоғжанның ыстық саусақтары мұның бетіне тиіп еді
+          <span class="blank-btn" id="wb1" onclick="revealBlank(1)">?</span>
+          Дірілдеген демдері қосылып, ыстық еріндері енді айырылмастай табысқанды
+          <span class="blank-btn" id="wb2" onclick="revealBlank(2)">?</span>»
+        </p>
+        <div class="weekly-reveal" id="weeklyReveal">
+          <strong>Жауабы:</strong> 1-орында — <b>нүкте (.)</b>, өйткені бұл жерде ой аяқталып, жаңа сөйлем басталады.
+          2-орында — <b>көп нүкте (...)</b>, себебі жазушы оқиғаның жалғасын созбай, әрі қарай тоқтатып отыр
+          (§23: «Жазушы айтып келе жатқан оқиғаның жалғасын созбай, әрі қарай тоқтатады да, көп нүкте қояды»).
+        </div>
+      </div>
+      <div class="note-box">Апта сайын осы блокқа мәтіннен жаңа үзінді қосылады. Supabase-пен қосылғанда бұл мәтін <code>weekly_tasks</code> кестесінен автоматты түрде тартылады.</div>
+    </section>
+
+    <!-- AI CHECKER -->
+    <section id="ai" class="page">
+      <h1>AI Тексеру ✨</h1>
+      <p class="subtitle">Мәтініңізді енгізіңіз. Punctum AI тыныс белгілерін тексеруге көмектеседі.</p>
+      <div class="ai-box">
+        <textarea id="textToCheck" placeholder="Мысалы: Білім адамға өмір бойы қажет"></textarea>
+        <button class="check-button" onclick="checkText()">✨ Тексеру</button>
+        <div id="aiResult" class="ai-result">
+          <strong>AI нәтижесі:</strong>
+          <p id="aiText"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE + EXERCISE PAGES render here dynamically -->
+    <div id="ruleContainer"></div>
+
+  </main>
+</div>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal modal-wrap">
+    <span class="close" onclick="closeModal()">✕</span>
+    <div id="modalLogin">
+      <h2>Кіру</h2>
+      <div class="sub">Прогресіңізді сақтау үшін есептік жазбаңызға кіріңіз.</div>
+      <input type="email" id="loginEmail" placeholder="Email">
+      <input type="password" id="loginPass" placeholder="Құпия сөз">
+      <button class="primary" onclick="doLogin()">Кіру</button>
+      <div class="modal-msg" id="loginMsg"></div>
+      <div class="switch">Есептік жазбаңыз жоқ па? <a onclick="openModal('signup')">Тіркелу</a></div>
+    </div>
+    <div id="modalSignup" style="display:none;">
+      <h2>Тіркелу</h2>
+      <div class="sub">Жаңа есептік жазба ашып, прогресіңізді бақылаңыз.</div>
+      <input type="text" id="signupName" placeholder="Атыңыз">
+      <input type="email" id="signupEmail" placeholder="Email">
+      <input type="password" id="signupPass" placeholder="Құпия сөз (кемінде 6 таңба)">
+      <button class="primary" onclick="doSignup()">Тіркелу</button>
+      <div class="modal-msg" id="signupMsg"></div>
+      <div class="switch">Есептік жазбаңыз бар ма? <a onclick="openModal('login')">Кіру</a></div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+/* ======================================================================
+   SUPABASE ІСКЕ ҚОСУ
+   Мына екі мәнді өз Supabase жобаңыздың Project Settings → API
+   бөлімінен алып, осында қойыңыз. Дерекқор кестелерін жасау үшін
+   бірге берілген supabase_schema.sql файлын SQL Editor-де іске қосыңыз.
+====================================================================== */
+const SUPABASE_URL = "https://obgccwsxxhmxlwuxkwer.supabase.co/";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9iZ2Njd3N4eGhteGx3dXhrd2VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3NTI1NTcsImV4cCI6MjEwNDMyODU1N30.NKbEFJGOAKI3K15D7DvyHXTuIDmzYymliBKN5EwMtmE";
+
+let supabase = null;
+let supabaseReady = false;
+try {
+  const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+  if (!SUPABASE_URL.includes("YOUR-PROJECT-ID")) {
+    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    supabaseReady = true;
+  }
+} catch (e) {
+  console.warn("Supabase клиенті жүктелмеді (желі жоқ немесе SDK қолжетімсіз):", e);
+}
+
+let currentUser = null;
+let localProgress = {};      // { task_id: {is_correct, attempts} } — Supabase болмаса осында сақталады
+const LS_KEY = "punctum_local_progress";
+function loadLocalProgress(){
+  try{ localProgress = JSON.parse(localStorage.getItem(LS_KEY) || "{}"); }catch(e){ localProgress = {}; }
+}
+function saveLocalProgress(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(localProgress)); }catch(e){}
+}
+loadLocalProgress();
+
+/* ======================================================================
+   ДЕРЕКТЕР: 11 санаттың толық ережелері (дереккөз: пайдаланушы
+   ұсынған "ТЫНЫС БЕЛГІЛЕРІ" анықтамалығы, §-белгілері алынып тасталды,
+   мазмұны толық сақталды, тек нөмірленіп, оқуға ыңғайлы етіп
+   топтастырылды).
+====================================================================== */
+const RULES = {
+period: {
+  title: "Нүкте", symbol: ".", order:1,
+  subtitle: "Нүкте — аяқталған хабарлы сөйлемнің соңына қойылатын негізгі тыныс белгісі.",
+  note: "Бұл анықтамалықтағы пунктуация ережелері синтаксистік құрылысқа қарай баяндалған. Әр тыныс белгісінің жалпы қай орындарда қолданылатыны осы қосымшада жинақталған.",
+  rules: [
+    "Нүкте хабарлы сөйлемдерден және екпінсіз айтылған бұйрық, тілек мәнді сөйлемдерден кейін қойылады.",
+    "Нүкте әрі қарай кең түрде баяндау болатынын ескертетін сөйлемнен кейін қойылады.",
+    { text:"Қыстырма сөйлемді алу үшін ашылған жақшаның алдындағы сөйлем аяқталып, оған тиісті тыныс белгілерінің бірі қойылған болса, қыстырма сөйлемнен кейін жақшаның ішінен нүкте қойылады.",
+      ex:"Ендеше, егер рұқсат етсе, сонда түсейік. Бүгін ас ішетін жеріміз де жоқ. Жататын қуысы болса болады. (Итбайдың бұлай деуіне себеп – қызын көрейін дегендік еді.)", src:"С.Мұқанов" },
+    { text:"Драмалық шығармаларда әр сөйлеуші кейіпкердің атынан кейін нүкте қойылады. Кейіпкердің атынан кейін ремарка (автордың түсіндірме сөздері) келсе, ол кіші әріппен жақша ішіне алынады да, нүкте жабылған жақшадан кейін қойылады.\n\nа) Ремарка екі сөйлемнің арасында тұрып, өзінен кейін айтылған сөйлемге байланысты болса — кейіпкер сөзінің ремаркаға дейінгі сөйлеміне тиісті тыныс белгісі қойылады, ремарка жақшаға алынып бас әріптен жазылады, жабылған жақшаның ішінен нүкте қойылады, ал жақшаның сыртынан ешқандай тыныс белгісі қойылмайды.\n\nә) Ремарка кейіпкер сөзінің ішіндегі бір сөйлемнің арасында болса және мағына жағынан соған тікелей қатысты болса — жақшаға алынып кіші әріптен басталып жазылады, жақшаның алды-артына және ішіне ешқандай тыныс белгісі қойылмайды.",
+      ex:"П е т р. Бұл немене? А м а н г е л д і. Біле алмадым... Сақал мен мұртқа бір кезек келген сияқты. \n А м а н г е л д і (атып тұрып). Кешігіп қалыпсыз, мырза! \n П е т р. Ендеше, жөніңді біл, шығарма үніңді. (Амангелдіге.) Сен бара тұр, мерген, бір айналып соғарсың.", src:"Ғ.Мүсірепов" },
+    { text:"Кейіпкердің айтқан сөзіне тікелей қатысы жоқ, автордың түсінігі ретінде айтылған ремаркадан кейін, көбінесе, жақша ішіне нүкте қойылады. Ескерту: мұндайда нүкте жақшаның сыртына қойылуы да мүмкін.",
+      ex:"М ы р қ а л. Інісі бар болсын! Менде Абзалдан басқа іні бар ма? (Телефон шырылдайды.)", src:"Ә.Әбішев" },
+    { text:"Дәйексөздің, келтірілген мысалдың қайдан екенін, иесін көрсететін сөздер жақшаға алынады. Егер ашылған жақшаның алдында ешқандай тыныс белгісі болмаса, жақша жабылған жерге нүкте қойылады. Ал ашылған жақшаның алдында нүкте, сұрау, леп белгісі не көп нүкте тұрса, нүкте жақшаның ішіне қойылуы мүмкін.",
+      ex:"Қансонарда бүркітші шығады аңға.", src:"Абай" },
+    "Бас әріптерінен немесе басқы буынынан шартты түрде қысқартылып алынған адам, кітап, газет, журнал, шығарма т.б. аттарының сол қысқартылған әрпінен не буынынан соң нүкте қойылады: Н.В.Гоголь, Конс.Симонов, С.Мұқанов, А.Құнанбаев, Шығ., I том.",
+    "Тағысын тағы, тағы сондайлар, тағы басқа деген сөздер қысқартылып қолданылғанда, олардан кейін нүкте қойылады: т.б., т.с., т.т. Бұлардан басқа қысқартылып нүкте қойылатын сөздер: ж. – жыл; ғ. – ғасыр; сек. – секунд; мин. – минут; сағ. – сағат.",
+    "Мынадай қысқартуларға нүкте қойылмайды: а) бас әріптерден және буындардан қысқарған сөздердің әріптерінің немесе буындарының арасына нүкте қойылмайды (ҚазМУ, ауатком); ә) ұзындық, көлем өлшемдерінің шартты белгілерінен кейін нүкте қойылмайды (км, м, см, га, л, V — вольт, А — ампер, С — Цельсий).",
+    { text:"Санамалы нөмірді белгілейтін айшықсыз (жарты жақшасыз) қолданылған цифр не әріптен кейін нүкте қойылады. Цифрдан немесе оның орнына алынған әріптен кейін жарты жақша (айшық) қойылса, одан кейін нүкте қойылмайды.",
+      ex:"1. Надан Тобықтының қыстаулары: Қошқар, Қазанқап сайы, Көрпетай т.б.\n2. Төлеңгіттер қыстауы: Төлебике сайы...\n3. Тарақты руының қыстаулары: Матайадыр, Жотан, Текебай...", src:"Т.Жанұзақов" },
+    "Кітаптағы тақырыптардың атынан кейін нүкте қойылуы да мүмкін."
+  ]
+},
+question: {
+  title: "Сұрау белгісі", symbol:"?", order:2,
+  subtitle: "Сұрау белгісі — сұраулы сөйлемнің соңына қойылатын тыныс белгісі.",
+  rules: [
+    "Сұрау белгісі сұраулы сөйлемдерден кейін қойылады.",
+    "Сұраулық мәнін ерекше көтеру үшін кейде бірыңғай мүшенің әрқайсысынан кейін сұрау белгісі қойылуы мүмкін.",
+    { text:"Автор мәселенің талас я күдікті екендігін көрсетіп, оқушының назарын аударғысы келгенде, немесе бір пікірге келісе алмайтындығын білдіргенде, дәйексөздің ішінде белгілі бір сөзден не сөйлемнен кейін жақша ішіне алып не сұрау белгісін, не леп белгісін, не екеуін қатар қояды, кейде бір белгінің өзін екі-үш қайталап қояды. Бұл көбінесе сын-библиографиялық шығармаларда кездеседі.",
+      ex:"«Гүлді орамал жауып, төрт таған столға қойылған суретке (?) телмеңдей қараған...» — аудармашы «ломберный стол» дегенді «төрт таған стол (?)» деп қате аударған.\n\nЕңбек – кеме, матрос – мен кемеде, Оны сүймек сыбаға пешенеме (?!)", src:"Ә.Нұрпейісов / Қ.Шаңғытбаев" }
+  ]
+},
+exclaim: {
+  title:"Леп белгісі", symbol:"!", order:3,
+  subtitle:"Леп белгісі — көтеріңкі дауыспен, ерекше көңіл-күймен айтылған сөйлемнің соңына қойылатын белгі.",
+  rules:[
+    "Леп белгісі көтеріңкі дауыспен айтылған лепті сөйлемдерден соң қойылады.",
+    "Ерекше бір көңіл күйіне байланысты көтеріңкі дауыспен бұйыру, өтініш мағынасында айтылған сөйлемдерге леп белгісі қойылады.",
+    "Ұранды сөйлемдерден соң леп белгісі қойылады.",
+    "Ерекше көтеріңкі дауыспен айтылған қаратпа, одағай сөздер мен жоқ, иә деген сөздерден кейін леп белгісі қойылады.",
+    { text:"Ерекше мән бере көтеріңкі айтылған атаулы сөйлем сияқты сөздерден кейін де леп белгісі қойылуы мүмкін.",
+      ex:"“Иегі ителгінің тамағындай” деп қызықтырған, асықтырған қалыңдық! Ділда! Мұның жары!", src:"М.Әуезов" },
+    "Сәлемдескенде айтылатын, ішінде сұраулық шылауы бар тіркестерден кейін леп белгісі қойылады (мысалы, «Аман-есенсіз бе!» деген сияқты, шылауы бар болса да, бұл нақты сұрақ емес)."
+  ]
+},
+ellipsis: {
+  title:"Көп нүкте", symbol:"…", order:4,
+  subtitle:"Көп нүкте — сөз я ойдың бөлініп, тоқтап немесе аяқталмай қалғанын білдіретін тыныс белгісі.",
+  rules:[
+    { text:"Сөйлеуші белгілі бір себептермен (қатты асып-сасу, ентігу, тұтығу, әлсіреу т.б.) сөздерін, ойын бөліп-бөліп айтқанда, бір сөздің ішіндегі әріптердің арасына немесе сөйлем ішіндегі сөздердің арасына, ал ойы бітпей қалғанда, сөйлемнің соңына көп нүкте қойылады.",
+      ex:"Құдайберді есікке көзімен нұсқап: – Адам бола ма?!. Болар ма!.. Інілерің міне... Кім боларын... Не көрерін қайдан... білейін, – деді.\nЖ-ж-жоқ... мен... өзім барам...", src:"М.Әуезов / С.Мұқанов" },
+    "Көп нүкте алынған цитаттың бас жағынан, ара-арасынан және соңынан сөйлем не сөздер қалдырылған жерге қойылады.",
+    { text:"Жазушы айтып келе жатқан оқиғаның жалғасын созбай, әрі қарай тоқтатады да, көп нүкте қояды.",
+      ex:"Абайдың ілгері созып келе жаткан оң қолы жібек шымылдыққа тиген кезде... ыстық еріндері енді айырылмастай табысқанды...", src:"М.Әуезов" },
+    { text:"Айтылып келе жатқан ойға кенет, тосын, күтпеген немесе өте алшақ жатқан нәрсе (оқиға, зат, қимыл т.б.) қосылып кетсе, оның алдынан көп нүкте қойылады.",
+      ex:"...баспасөз, оқулықтар, сөздіктер, медицина, ветеринария тақырыптарына жазылған көпшілік кітапшалар және... христиан дінін уағыздайтын миссионерлік әдебиет жатады.", src:"Р.Сыздықова" }
+  ]
+},
+comma: {
+  title:"Үтір", symbol:",", order:5,
+  subtitle:"Үтір — сөйлем ішіндегі сөздер мен сөйлем бөліктерін ажырату үшін қолданылатын ең жиі кездесетін тыныс белгісі.",
+  rules:[
+    "Үтірмен сөйлемдегі қаратпа сөздер, қаратпа сөз тізбектері бөлінеді. Нақтылы біреуге арналмаған, жалпылық-белгісіздік мағынасы бар сөздер мен сөз тізбектері де үтірмен бөлінеді.",
+    "Сөйлемдегі қыстырма сөздер, сөз тізбектері және сөйлемдер үтірмен бөлінеді.",
+    "Үтірмен сөйлемдегі одағайлар бөлінеді.",
+    "Бәсе, жә, қош, құп, жарайды, мақұл, дұрыс сияқты сөздер үтірмен бөлінеді.",
+    "Сөйлемдегі иә, жоқ, мә, мәңіз деген сөздер үтірмен бөлінеді.",
+    { text:"Үтір сөйлемнің бірыңғай мүшелерінің арасына қойылады.", ex:"Асан, Үсен және Айжан мектепке келді." },
+    "Сөйлемдегі оңашаланған айқындауыш мүшелер үтірмен бөлінеді.",
+    "Сияқты, ретінде, қатар, емес, түгіл деген сөздермен келген және -дай, -дей, -тай, -тей жұрнақтары қосылған тізбектер де үтірге алынады.",
+    "Қарамастан, қоспағанда, есептегенде деген сөздерге аяқталатын сөз тізбектері үтірмен ажыратылады.",
+    "Үтір құрмаласқа енген жай сөйлемдердің арасына қойылады.",
+    "Екіге бөлінген төл сөздің алғашқы бөлігі хабарлы сөйлем немесе сөйлемнің бір бөлігі болса, одан кейін үтір (және сызықша) қойылады. Егер алғашқы бөлігі өз алдына сөйлем болмай, оған үтір қойылған болса, екінші бөлігінің алдынан да үтір қойылады.",
+    "Бірнеше сөзден құралған күрделі қос сөздердің арасына үтір қойылады.",
+    "Бірдей немесе әр келкі тұлғада қайталап келетін жеке сөздер мен тіркестердің араларына үтір қойылады.",
+    "«Ол – ол ма», «бұл – бұл ма», «ол – ол болсын» деген тіркестер сөйлем ішіндегі басқа сөздерден үтірмен бөлінеді."
+  ]
+},
+semicolon: {
+  title:"Нүктелі үтір", symbol:";", order:6,
+  subtitle:"Нүктелі үтір — үтірден гөрі күштірек, бірақ нүктеден әлсірек бөлу қажет болғанда қолданылатын тыныс белгісі.",
+  rules:[
+    "Нүктелі үтір санамаланып айтылған, мағыналары ыңғайлас сөйлемдердің арасына қойылады.",
+    "Мағынасы, құрылысы жағынан ұқсас келетін сөйлемдердің арасына нүктелі үтір қойылуы мүмкін.",
+    "Жайылмалы, әрі өз ішінде үтірлері бар бірыңғай мүшелердің арасына нүктелі үтір қойылады."
+  ]
+},
+dash: {
+  title:"Сызықша", symbol:"—", order:7,
+  subtitle:"Сызықша — сөйлемдегі мағыналық және грамматикалық байланысты көрсету үшін қолданылатын тыныс белгісі.",
+  rules:[
+    { text:"Сызықша бастауыш пен баяндауыштың арасына қойылады.", ex:"Білім — болашақтың негізі." },
+    "Сызықша бірыңғай мүшелерден кейін келген жалпылауыш сөздің алдынан қойылады.",
+    "Алдында жалпылауыш сөзі бар бірыңғай мүшелерден кейін сөйлем аяқталмаса, ең соңғы бірыңғай мүшеден соң сызықша қойылады.",
+    "Диалог төл сөздің алды-артынан (егер төл сөзден кейін автор сөзі тұрса), тырнақшаға алынған төл сөздің артынан сызықша қойылады.",
+    "Сызықша жалғаулықсыз салаластардың арасына қойылады.",
+    "Оңашаланған айқындауыш мүшелердің екі жағынан сызықша қойылады.",
+    { text:"Бірыңғай сұраулы мүшелерді немесе сұраулы сөйлемдерді жинақтап тұратын «әйтеуір» деген сөз түсіп қалған жерге сызықша қойылады.",
+      ex:"Ісінгендіктен бе, таяқтан әлсірегендіктен бе – денесі зілдей ауыр екен.", src:"С.Мұқанов" },
+    "Оңашаланған айқындауыштың алдынан сызықша қойылады.",
+    "Сонда, сонша, сондай, соншалық, сол, мынау, мынадай деген сөздерге аяқталған тіркестен кейін жеке сөйлем тұрса, бұл сөздерден кейін сызықша қойылады.",
+    { text:"Мекен, уақыт, сан шендестігін білдіретін сөздердің арасына сызықша қойылады (ол -дан жалғауы мен шейін шылауының мағынасын білдіреді). Мұны белгісіздік-жалпылық және болжалдық мағынасындағы қос сөз сан есімдермен шатастырмау керек — олар дефис арқылы жазылады.",
+      ex:"Мойынты – Шу темір жолы. Институтта күніне 6-8 сағат лекция болады. Машина сағатына 30-45 километрден жүріп отырып, жолдың жартысына келіп қалды.\n\nБолжалды сан есім (дефиспен): Кермеге төрт-бес ат қатар байланыпты. Екі-үш күннен бері жаңбыр жауып тұр." }
+  ]
+},
+quotes: {
+  title:"Тырнақша", symbol:"“”", order:8,
+  subtitle:"Тырнақша — дәйексөзді, аттарды, ерекше мағынада қолданылған сөздерді бөліп көрсету үшін қолданылатын тыныс белгісі.",
+  rules:[
+    "Дәйексөз тырнақшаға алынады. Алынған дәйексөз бірнеше азатжолдан құралған болса, әр азат жол бөлек-бөлек тырнақшаға алынбайды — тырнақша дәйексөздің басталған жерінен ашылып, біткен жерінен бір-ақ жабылады.",
+    { text:"Шығарманың ішінде келтірілген үлкенді-кішілі хаттар тырнақшаға алынады. Кейде тырнақша хаттың әрбір азатжол сайын ашылып отырады да, ең соңынан барып бір-ақ жабылады (бұл өте сирек қолданылатын ереже).",
+      ex:"«Ботагөз!.. Амантай!.. Екеуіңнің аттарыңды қағазға түсіргеннен кейін, аяғына не сөз қосарымды білмей, бірнеше минут дағдарып отырмын»...", src:"С.Мұқанов, «Ботагөз»" },
+    "Диалог емес төл сөз тырнақшаға алынады.",
+    { text:"Объект етіп алынған жеке сөйлемдер, сөздер не сөз тізбектері, сондай-ақ әріптер, буындар тырнақшаға алынады. Ескерту: арнаулы кітаптарда, оқулықтарда, әдістемелік құралдарда т.б. бұлар тырнақшаға алынбай, басқа шрифтпен (курсив, қара шрифт т.б.) терілуі мүмкін.",
+      ex:"“Жаз шықты” деген сөйлемнің бастауышы – “жаз”. Дауысты “а” дыбысы – жуан дыбыс. “Ат” – көп мағыналы сөз. “Тарақ” деген сөздегі “та” буыны – ашық буын." },
+    "Мақал, мәтелдер, афоризмдер сөйлем ішінде келтірілгенде тырнақшаға алынады.",
+    "Дәйексөз ретінде келтірілмей, сөйлемге оның ажыратылмайтын мүшесі ретінде берілген біреудің сөзі тырнақшаға алынады.",
+    "Де дәнекерінсіз айтылып, заттанып кеткен төл сөздер тырнақшаға алынады.",
+    { text:"Біреудің айтқанынан алынған жеке-жеке сөздер тырнақшамен жазылады.",
+      ex:"Соңғы айтқан “мылжың”, “мақтаншақ”, “даңғой” дегендері осы арада шынымен төрт көзі түгел отыр еді.", src:"М.Әуезов" },
+    { text:"Кекету, ажуалау және кері мағынада қолдану үшін айтылған сөз (не сөздер) тырнақшаға алынады.",
+      ex:"Ақ көңіл Ақаң “баланың” сырғытпасын сезген жоқ. Қоян “батыр” қорыққаннан зыта жөнелді.", src:"Ғ.Мұстафин / Ертегіден" },
+    { text:"Зауыт, фабрика, комбинат, трест, шаруашылық, ұйым, машина маркасы, ұшақ т.б. шартты, жеке қойылған аттар тырнақшаға алынады, ал олардың жалпы ресми атаулары тырнақшаға алынбайды.",
+      ex:"«Азовсталь» зауыты; «Карагандауголь» тресі; «Ертіс» пароходы; «У2» ұшағы; «Волга» машинасы; «Қазақ тілі» қоғамы." },
+    { text:"Газет, журнал, кітап, шығарма, қаулы, кино т.б. аттары тырнақшаға алынады.",
+      ex:"«Ана тілі» газеті, «Парасат» журналы, «Абай» романы, «Аққу көлі» балеті." },
+    { text:"Кейбір ойын, әдет-салт аттары тырнақшаға алынады.",
+      ex:"“Қол ұстату”, “шаш сипату” деген атақты ырымдар осы. Балалардың түнгі ермегі – “ақсүйек”, “соқыртеке”, “бурақотан” сияқты ойындар.", src:"М.Әуезов / С.Мұқанов" }
+  ],
+  notes:[
+    "Атындағы деген сөзбен келген атақ тырнақшаға алынбайды: Әл-Фараби атындағы университет, Ғ.Мүсірепов атындағы мектеп (ал «Абай» бірлестігі — тырнақшамен).",
+    "Мекеме, ұйым т.б. ресми атаулары (толық немесе қысқартылған) тырнақшаға алынбайды: Тұтынушылар одағы, Мемлекеттік банк бөлімшесі.",
+    "Телеграф агенттіктерінің аттары тырнақшаға алынбайды: Ассошиэтед Пресс агенттігі, МЕН агенттігі.",
+    "Кітаптың аттары библиографиялық тізімдерде, сілтемелерде, автордың аты-жөнінен кейін жазылғанда тырнақшаға алынбайды: Ғ.Мұстафин. Өмір белестері. Алматы, 1984."
+  ]
+},
+brackets: {
+  title:"Жақша", symbol:"()", order:9,
+  subtitle:"Жақша — қыстырма сөйлемдерді, түсіндірмелерді, дереккөзді және ремаркаларды бөліп көрсету үшін қолданылады.",
+  rules:[
+    "Қыстырма сөйлемдер не сөз тіркестері жақшаға алынады.",
+    { text:"Белгілі бір сөздерді түсіндіру үшін оның аудармасы, синонимі т.б. беріледі де, жақшаға алынып жазылады.",
+      ex:"1900 жылдың желтоқсанында шетелге “Искра” (“Ұшқын”) газетінің бірінші нөмірі шықты." },
+    { text:"Алынған сөйлем, дәйексөздің және мысалдың қайдан, кімдікі екенін көрсету үшін, оның соңынан жазылған кітаптың аты, авторы т.б. жақшаға алынады.",
+      ex:"«...Бірақ ол мұның да қызығын ерте тояттап, ескірген ел даналығын өзіне мұра санаудан қалған сияқты» (Қ.Жұбанов. Қазақ тілі жөніндегі зерттеулер. Алматы, 1966, 296-бет)." },
+    { text:"Драмалық шығармалардағы ремаркалар (автордың түсіндірмелері) жақшаға алынады.",
+      ex:"А м а н г е л д і. Миша! (Жайнаққа.) Әкет мыналарыңды! (Жайнақ Жапарларды айдап кетеді.)", src:"Ғ.Мүсірепов" },
+    "Мәселенің талас я күдікті екендігін көрсетіп, оқушының назарын аудару үшін, біреуден келтірілген дәйексөздің ішіндегі жеке сөздерге не сөйлемге қойылатын леп, сұрау белгілері жақшаға алынады.",
+    { text:"Келтірілген мысал не дәйексөздің ішіндегі белгілі бір сөздерді не сөйлемдерді санамалап көрсету үшін, жол-жөнекей қойылатын цифрлар (не әріптер) екі жағынан жақшаға алынады.",
+      ex:"(1) Жасыл желегін бүркенген қарағайдың арасымен жүріп отырып, (2) Асқар көлдің қабағына шықса, (3) мұз бетінде бірсыпыра кісі сырғанақ теуіп жүр екен.", src:"«Қазақ тілі грамматикасы»" }
+  ]
+},
+colon: {
+  title:"Қос нүкте", symbol:":", order:10,
+  subtitle:"Қос нүкте — алдағы санамалауды, түсіндіруді немесе төл сөзді енгізу үшін қойылатын тыныс белгісі.",
+  rules:[
+    "Бірыңғай мүшелердің алдынан келген жалпылауыш сөзден кейін қос нүкте қойылады.",
+    "Салалас құрмаластағы біріне-бірі түсінік болып келген және өйткені, себебі деген жалғаулықтар түсіп қалып жасалған жай сөйлемдердің арасына қос нүкте қойылады.",
+    "Төл сөздің алдынан келген автордың сөзінен кейін қос нүкте қойылады.",
+    "Әрі қарай санамалап кететін бірыңғай сөздердің, сөйлемдердің алдынан келетін жалпылауыш мәнді сөйлемнен кейін қос нүкте қойылады.",
+    "Бірыңғай мүшелерден бұрын келген мысалы, атап айтқанда деген қыстырма сөзден кейін қос нүкте қойылады."
+  ]
+},
+combo: {
+  title:"Тыныс белгілерінің қабаттаса қолданылуы", symbol:"?!", order:11,
+  subtitle:"Бір сөйлемде бірнеше тыныс белгісі қатар келгенде, олардың орналасу тәртібін білдіретін ережелер.",
+  rules:[
+    "Құрмалас сөйлемдегі бірақ, сонда да, алайда, сондықтан, дегенмен сияқты жалғаулықтар түсіп қалғанда, екі сөйлем арасына (жалғаулықтар айтылмаған жерге) әуелі үтір, одан кейін сызықша қойылады.",
+    { text:"Сызықша нүктемен, үтірмен, сұрау және леп белгілерімен, көп нүктемен қабаттаса келгенде, сол тыныс белгілерінен кейін қойылады.",
+      ex:"– Енді сен не істемекшісің? – деді ана баласының сөзін бөліп.\n– Рас! – деп, Тоғжан қызара түсіп көзін төмендетті. – Сізді мен бір көрдім.", src:"М.Горький / М.Әуезов" },
+    { text:"Тырнақша мен нүкте, үтір, сұрау, леп белгілері және көп нүкте қабаттаса келгенде: а) егер леп, сұрау белгілері және көп нүкте тырнақшаға алынған сөйлемге ғана қатысты болса — олар тырнақшадан бұрын қойылады, ал үтір мен нүкте тырнақшадан соң қойылады (қабаттаса сызықша жүрсе, ол тырнақшадан соң қойылады); ә) тырнақшаға алынуға тиісті құрылым тұтас сөйлем емес, оның ішіндегі жеке сөздер не сөз тізбектері болса — сөйлем соңына қойылатын леп, сұрау белгілері мен көп нүкте тырнақшаның сыртынан қойылады; б) сөйлем тырнақша жабылған жерден бітіп тұрса, ішкі леп/сұрау белгілерінен кейін тырнақшаның сыртына басқа тыныс белгісі (сызықшадан бөтен) қойылмайды.",
+      ex:"“Өзім алып шығайын”, – деп ойлады Бүркітбай.\n– Әй, қайтып келесің бе “бала”? – деп қалжыңдай айғайлайды ол жолдасына.", src:"С.Мұқанов" },
+    { text:"Нүкте, леп, сұрау белгілері және көп нүкте жақша ішінде алынған текске қатысты болса, жақшаның ішінен қойылады; жақшаның сыртына жалпы сөйлемге тиісті тыныс белгісі қойылады.",
+      ex:"Байқауымша, әңгіме былай: Біріншіден (рас қой мұным?), Орыс үйі көрмей тыным...", src:"А.С.Пушкин" },
+    { text:"Баяндаманың, сөйленген сөздердің ішіндегі жақшаға алынған ремаркалар сөйлем соңында келгенде, тыныс белгісі мен жақша үш түрлі жолмен қабаттасуы мүмкін: 1) нүкте жақшаның алдынан қойылмай, соңынан бір-ақ қойылады; 2) ремарканың алдынан бір нүкте, жақша ішіне тағы нүкте қойылады; 3) ремарканың алдынан бір нүкте, жақшаның сыртынан тағы нүкте қойылады. Көбінесе 1- және 2-түрлері жиі қолданылады.",
+      ex:"Біздер, жазушылар, көркем сөзімізбен халықты ізгілікке тәрбиелеуге дайынбыз (Қол шапалақтау).\nӨлең – сөздің патшасы, сөз сарасы (Абай)." },
+    { text:"Драмалық шығармалардағы жақшаға алынатын ремаркалардың тыныс белгілерінің орналасу тәртібі: ремарка кейіпкердің атынан кейін қатар келгенде, нүкте жақшаның сыртына қойылады (кейіпкердің атынан кейін нүкте қойылмайды); ремарка кейіпкер сөзінің ішінде екі сөйлемнің арасында немесе аяғында келсе, нүкте жақшаның ішіне қойылады.",
+      ex:"Б а я н (аз ойланып). Үш түрлі шарт қойсам, орындармысың?", src:"Ғ.Мүсірепов" },
+    "Тырнақшаға алынған дәйексөздің немесе басқаның өзі тырнақшаға алынған сөздерден, сөйлемнен басталса немесе аяқталса, екі тырнақша қатар қойылмай, біреуі-ақ қойылады.",
+    { text:"Жақша ішіне алынған сөздердің тұрған жеріне қойылатын тыныс белгісі жақшадан соң қойылады.",
+      ex:"Алуа атты шалқар көл бар (оған кейін ораламыз), көлдің әр тұсынан су ағар жыралар қосылады.", src:"С.Мұқанов" },
+    "Сұрау, леп белгілері көп нүктемен қабаттаса келгенде, әуелі сұрау не леп белгісі, одан кейін қатар екі (үш емес) нүкте қойылады. Ал леп, сұрау, көп нүкте үшеуі қатар келгенде, мағынасына қарай әуелі сұрау мен леп белгісі (не леп пен сұрау белгісі), одан кейін бір нүкте қойылады.",
+    "Лептік те, сұраулық та мәні бар сөйлемдерден кейін леп белгісі де, сұрау белгісі де қатар қойылады; сөйлемнің қай мәні басым болса, әуелі сол мәнге тиісті белгі қойылады.",
+    { text:"Бірыңғай мүшелердің не құрмаластағы жай сөйлемдердің арасында көп нүкте тұрса, үтір қойылмайды.",
+      ex:"Сатылып кеткен бурыл биенің құлындарын кісінікі деуге қимаймын... іштей өзімсінем... көргім келеді де тұрады және көре де берем!", src:"С.Мұқанов" },
+    { text:"Қаратпа, одағай сөздерден және сөйлем басында келген иә, жоқ деген сөздерден кейін көп нүкте тұрса, үтір қойылмайды.",
+      ex:"– Жаным! Асылым... барым бір әзің! / – Ақмола ма? – Жоқ... Омбы, Қызылжардың бірі.", src:"М.Әуезов / Ғ.Мүсірепов" }
+  ]
+}
+};
+const CATEGORY_ORDER = ["period","question","exclaim","ellipsis","comma","semicolon","dash","quotes","brackets","colon","combo"];
+
+/* ======================================================================
+   ДЕРЕКТЕР: әр санатқа 5 тапсырмадан (55 тапсырма). t = мәтін бос орынмен,
+   opts = нұсқалар, c = дұрыс нұсқаның индексі, exp = түсіндірме.
+====================================================================== */
+const TASKS = {
+period:[
+  {t:"Күн батты [ ? ]", opts:["Нүкте (.)","Үтір (,)","Сұрау белгісі (?)"], c:0, exp:"Аяқталған хабарлы сөйлемнен кейін нүкте қойылады."},
+  {t:"Абай атындағы драма театры Алматыда орналасқан [ ? ]", opts:["Нүкте (.)","Леп белгісі (!)","Қос нүкте (:)"], c:0, exp:"Хабарлы сөйлем нүктемен аяқталады."},
+  {t:"Қайсысынан кейін нүкте қойылады: «ж.» (жыл), «км», «см»?", opts:["ж.","км","см"], c:0, exp:"«ж.» (жыл) сияқты қысқарған сөзден кейін нүкте қойылады, ал км, см сияқты өлшем бірліктерінен кейін нүкте қойылмайды."},
+  {t:"Драмада кейіпкердің атынан кейін негізінен қандай белгі қойылады? Мыс.: «А м а н г е л д і [ ? ] Біле алмадым...»", opts:["Нүкте (.)","Үтір (,)","Сызықша (—)"], c:0, exp:"Драмалық шығармаларда әр сөйлеуші кейіпкердің атынан кейін нүкте қойылады."},
+  {t:"Кітаптағы тарау атауының соңында қандай белгі қойылуы мүмкін?", opts:["Нүкте (.)","Үтір (,)","Дефис (-)"], c:0, exp:"Кітаптағы тақырыптардың атынан кейін нүкте қойылуы да мүмкін."}
+],
+question:[
+  {t:"Сен қашан келесің [ ? ]", opts:["Сұрау белгісі (?)","Нүкте (.)","Леп белгісі (!)"], c:0, exp:"Сұраулы сөйлемнен кейін сұрау белгісі қойылады."},
+  {t:"Ол мектепке барды ма [ ? ]", opts:["Сұрау белгісі (?)","Үтір (,)","Қос нүкте (:)"], c:0, exp:"«ма/ме» шылаулы сұраулы сөйлем сұрау белгісімен аяқталады."},
+  {t:"Аудармашының дәл аудармағанын күмәнмен көрсету үшін сөзден кейін жақша ішіне не қойылады?", opts:["(?)","(!)","(...)"], c:0, exp:"Автор сөздің дұрыстығына күмән келтіргенде, сол сөзден кейін жақша ішіне сұрау белгісі қойылады."},
+  {t:"Бүгін ауа райы қандай [ ? ]", opts:["Сұрау белгісі (?)","Нүкте (.)","Нүктелі үтір (;)"], c:0, exp:"Сұрақ мағыналы сөйлем сұрау белгісімен аяқталады."},
+  {t:"Дәптеріңді әкелдің бе [ ? ]", opts:["Сұрау белгісі (?)","Леп белгісі (!)","Көп нүкте (…)"], c:0, exp:"«бе» сұраулық шылауы бар сөйлем сұрау белгісімен аяқталады."}
+],
+exclaim:[
+  {t:"Жасасын Тәуелсіздік [ ? ]", opts:["Леп белгісі (!)","Нүкте (.)","Сұрау белгісі (?)"], c:0, exp:"Ұранды сөйлемдерден соң леп белгісі қойылады."},
+  {t:"Ой, қандай керемет көрініс [ ? ]", opts:["Леп белгісі (!)","Үтір (,)","Қос нүкте (:)"], c:0, exp:"Көтеріңкі дауыспен айтылған лепті сөйлем леп белгісімен аяқталады."},
+  {t:"Сәлемдесу тіркесінде сұраулық шылау болса да көбіне қандай белгі қойылады: «Есен-сау жүрсіз бе [ ? ]»", opts:["Леп белгісі (!)","Сұрау белгісі (?)","Көп нүкте (…)"], c:0, exp:"Сәлемдескенде айтылатын, ішінде сұраулық шылауы бар тіркестерден кейін леп белгісі қойылады — бұл шын мәнінде сұрақ емес."},
+  {t:"Тоқтат [ ? ] (қатаң бұйрық мағынасында, көтеріңкі дауыспен)", opts:["Леп белгісі (!)","Нүкте (.)","Сұрау белгісі (?)"], c:0, exp:"Көтеріңкі дауыспен айтылған бұйрық мәнді сөйлемге леп белгісі қойылады."},
+  {t:"Құрметті достар [ ? ] (ерекше көтеріңкі дауыспен қаратпа сөз)", opts:["Леп белгісі (!)","Үтір (,)","Нүкте (.)"], c:0, exp:"Ерекше көтеріңкі дауыспен айтылған қаратпа сөзден кейін леп белгісі қойылады."}
+],
+ellipsis:[
+  {t:"Мен... мен білмеймін [ ? ] (сөз бөліп-бөліп, түйсінбей айтылғанда)", opts:["Көп нүкте (…)","Үтір (,)","Нүкте (.)"], c:0, exp:"Сөйлеуші сөзін бөліп-бөліп айтқанда, ойы бітпей қалғанда көп нүкте қойылады."},
+  {t:"Жазушы оқиғаны әрі қарай баяндамай, тоқтатқысы келгенде не қояды?", opts:["Көп нүкте (…)","Қос нүкте (:)","Нүктелі үтір (;)"], c:0, exp:"Жазушы оқиғаның жалғасын созбай тоқтатқанда көп нүкте қояды."},
+  {t:"Санамалап тұрған қатарға кенет, күтпеген нәрсе қосылса, оның алдына не қойылады?", opts:["Көп нүкте (…)","Үтір (,)","Сызықша (—)"], c:0, exp:"Күтпеген, алшақ жатқан нәрсе қосылғанда, оның алдынан көп нүкте қойылады."},
+  {t:"Ж-ж-жоқ [ ? ] мен... өзім барам... (тұтығып сөйлеу)", opts:["Көп нүкте (…)","Леп белгісі (!)","Қос нүкте (:)"], c:0, exp:"Тұтығып, буынды бөліп айтқанда әріптер арасына да көп нүкте қойылады."},
+  {t:"Дұрыс па, бұрыс па: «Одағай сөзден кейін көп нүкте тұрса, оның алдына тағы үтір қойылады»?", opts:["Бұрыс","Дұрыс"], c:0, exp:"Қаратпа, одағай сөздерден кейін көп нүкте тұрса, үтір қойылмайды."}
+],
+comma:[
+  {t:"Асан [ ? ] Үсен және Айжан мектепке келді.", opts:["Үтір (,)","Нүкте (.)","Қос нүкте (:)"], c:0, exp:"Үтір сөйлемнің бірыңғай мүшелерінің арасына қойылады."},
+  {t:"Балам [ ? ] бері кел.", opts:["Үтір (,)","Сызықша (—)","Нүкте (.)"], c:0, exp:"Қаратпа сөзден кейін үтір қойылады."},
+  {t:"Мен [ 1 ] әрине [ 2 ] келісемін. Неше үтір керек?", opts:["Екі үтір","Бір үтір","Үтір керек емес"], c:0, exp:"«әрине» — қыстырма сөз, ол екі жағынан үтірмен бөлінеді."},
+  {t:"Ой [ ? ] мұны қайтеміз?", opts:["Үтір (,)","Нүкте (.)","Дефис (-)"], c:0, exp:"Одағай сөзден кейін үтір қойылады."},
+  {t:"Ол келді [ ? ] біз қуандық. (құрмалас сөйлем)", opts:["Үтір (,)","Қос нүкте (:)","Сызықша (—)"], c:0, exp:"Үтір құрмаласқа енген жай сөйлемдердің арасына қойылады."}
+],
+semicolon:[
+  {t:"Мағынасы бір-біріне жақын, санамаланып тұрған бірнеше сөйлем арасына не қойылады?", opts:["Нүктелі үтір (;)","Үтір (,)","Қос нүкте (:)"], c:0, exp:"Нүктелі үтір санамаланып айтылған, мағыналары ыңғайлас сөйлемдердің арасына қойылады."},
+  {t:"Құрылысы, мағынасы жағынан ұқсас келетін екі сөйлем арасына қандай белгі қойылуы мүмкін?", opts:["Нүктелі үтір (;)","Леп белгісі (!)","Дефис (-)"], c:0, exp:"Мағынасы, құрылысы жағынан ұқсас сөйлемдердің арасына нүктелі үтір қойылуы мүмкін."},
+  {t:"Өз ішінде бірнеше үтірі бар, жайылмалы бірыңғай мүшелердің арасына не қойылады?", opts:["Нүктелі үтір (;)","Үтір (,)","Нүкте (.)"], c:0, exp:"Жайылмалы, өз ішінде үтірлері бар бірыңғай мүшелердің арасына нүктелі үтір қойылады — бұл шатасуды болдырмайды."},
+  {t:"Дұрыс па, бұрыс па: «Нүктелі үтір әрқашан нүктеден күштірек бөледі»?", opts:["Бұрыс — нүктеден әлсіз, үтірден күшті бөледі","Дұрыс"], c:0, exp:"Нүктелі үтір — үтір мен нүктенің аралығындағы бөлу күшіне ие."},
+  {t:"Санамаланған бірнеше ыңғайлас ойды бір-бірінен ажырату үшін ең қолайлы белгі қайсы?", opts:["Нүктелі үтір (;)","Дефис (-)","Тырнақша (“”)"], c:0, exp:"Мағыналары ыңғайлас, санамаланған сөйлемдер арасында нүктелі үтір қолданылады."}
+],
+dash:[
+  {t:"Білім [ ? ] болашақтың негізі.", opts:["Сызықша (—)","Үтір (,)","Қос нүкте (:)"], c:0, exp:"Бастауыш пен баяндауыш арасына сызықша қойылады."},
+  {t:"Мойынты [ ? ] Шу темір жолы. (мекенді шендестіру)", opts:["Сызықша (—)","Дефис (-)","Үтір (,)"], c:0, exp:"Мекен, уақыт, сан шендестігін білдіретін сөздер арасына сызықша қойылады."},
+  {t:"«Кермеге төрт[ ? ]бес ат қатар байланыпты» (болжалды сан есім)", opts:["Дефис (-)","Сызықша (—)","Үтір (,)"], c:0, exp:"Болжалды сан есімдер (төрт-бес, екі-үш) дефис арқылы жазылады, сызықшамен шатастырмау керек."},
+  {t:"Диалогта төл сөзден кейін автор сөзі келсе, төл сөздің алдынан не қойылады?", opts:["Сызықша (—)","Қос нүкте (:)","Жақша (())"], c:0, exp:"Диалог төл сөздің алды-артынан сызықша қойылады."},
+  {t:"Ісінгендіктен бе, таяқтан әлсірегендіктен бе [ ? ] денесі зілдей ауыр екен. («әйтеуір» орнына)", opts:["Сызықша (—)","Үтір (,)","Нүкте (.)"], c:0, exp:"Бірыңғай сұраулы мүшелерді жинақтап тұратын «әйтеуір» деген сөз түсіп қалған жерге сызықша қойылады."}
+],
+quotes:[
+  {t:"«Ана тілі» газетінің атауы қалай жазылады?", opts:["Тырнақшамен: «Ана тілі»","Тырнақшасыз: Ана тілі","Жақшамен: (Ана тілі)"], c:0, exp:"Газет, журнал, кітап аттары тырнақшаға алынады."},
+  {t:"«Абай атындағы мектеп» деген атау тырнақшаға алына ма?", opts:["Жоқ, алынбайды","Иә, алынады","Тек басында алынады"], c:0, exp:"«Атындағы» деген сөзбен келген атақ тырнақшаға алынбайды."},
+  {t:"«Қоян “батыр” қорыққаннан зытты» деген сөйлемдегі тырнақша нені білдіреді?", opts:["Кекету, кері мағынада қолдануды","Тікелей мақтауды","Дәйексөзді"], c:0, exp:"Кекету, ажуалау, кері мағынада қолдану үшін айтылған сөз тырнақшаға алынады."},
+  {t:"Мақал-мәтел сөйлем ішінде келтірілгенде қалай жазылады?", opts:["Тырнақшаға алынады","Жақшаға алынады","Бас әріппен ғана жазылады"], c:0, exp:"Мақал, мәтелдер, афоризмдер сөйлем ішінде келтірілгенде тырнақшаға алынады."},
+  {t:"«Ассошиэтед Пресс агенттігі» тырнақшамен жазыла ма?", opts:["Жоқ — телеграф агенттіктерінің аттары тырнақшасыз жазылады","Иә, әрқашан тырнақшамен","Тек қысқарған түрінде ғана"], c:0, exp:"Телеграф агенттіктерінің аттары тырнақшаға алынбайды."}
+],
+brackets:[
+  {t:"«“Искра” [ 1 ]“Ұшқын”[ 2 ] газетінің бірінші нөмірі шықты» — 1, 2-орындарға не қойылады?", opts:["Ашылатын және жабылатын жақша","Екі үтір","Сызықша"], c:0, exp:"Сөздің аудармасын, синонимін беру үшін ол жақшаға алынып жазылады."},
+  {t:"Дәйексөздің кімдікі, қайдан алынғаны көрсетілетін автор, кітап аты қайда жазылады?", opts:["Жақшаға алынып, дәйексөзден соң","Тырнақшаға алынып, дәйексөзден бұрын","Қос нүктеден кейін"], c:0, exp:"Дәйексөздің дереккөзі көрсетілетін сөздер жақшаға алынады."},
+  {t:"Драмада автордың түсіндірме сөздері (ремарка) қалай белгіленеді?", opts:["Жақшаға алынады","Тырнақшаға алынады","Сызықшамен бөлінеді"], c:0, exp:"Драмалық шығармалардағы ремаркалар жақшаға алынады."},
+  {t:"Мысал ішіндегі сөйлемдерді санамалап көрсету үшін цифрлар қалай жазылады? Мыс.: «[1] Жасыл желегін бүркенген қарағайдың арасымен...»", opts:["Екі жағынан жақшаға алынып","Тырнақшамен","Сызықшамен бөлек жазылып"], c:0, exp:"Санамалап көрсету үшін қойылатын цифрлар (не әріптер) екі жағынан жақшаға алынады."},
+  {t:"Дәйексөз ішінде күмәнді сөзге қойылатын леп/сұрау белгісі қайда тұрады?", opts:["Сол сөзден кейін жақша ішінде","Сөйлем соңында, жақшасыз","Тырнақша ішінде"], c:0, exp:"Күмәнді немесе талас сөзге қойылатын леп, сұрау белгілері жақшаға алынады."}
+],
+colon:[
+  {t:"Үстелде мыналар тұр [ ? ] кітап, қалам, дәптер.", opts:["Қос нүкте (:)","Үтір (,)","Сызықша (—)"], c:0, exp:"Бірыңғай мүшелердің алдынан келген жалпылауыш сөзден кейін қос нүкте қойылады."},
+  {t:"Ол келмеді [ ? ] себебі, науқас болды. («себебі» түсіп қалған жағдай)", opts:["Қос нүкте (:)","Нүктелі үтір (;)","Дефис (-)"], c:0, exp:"«өйткені», «себебі» деген жалғаулықтар түсіп қалып жасалған сөйлемдер арасына қос нүкте қойылады."},
+  {t:"Ол айтты [ ? ] «Мен ертең келемін».", opts:["Қос нүкте (:)","Үтір (,)","Нүкте (.)"], c:0, exp:"Төл сөздің алдынан келген автордың сөзінен кейін қос нүкте қойылады."},
+  {t:"Мысалы [ ? ] алма, алмұрт, өрік.", opts:["Қос нүкте (:)","Сызықша (—)","Үтір (,)"], c:0, exp:"«мысалы», «атап айтқанда» деген қыстырма сөзден кейін қос нүкте қойылады."},
+  {t:"Санамалауды бастайтын жалпылауыш мәнді сөйлемнен кейін не қойылады?", opts:["Қос нүкте (:)","Леп белгісі (!)","Дефис (-)"], c:0, exp:"Әрі қарай санамалап кететін сөздердің алдынан келетін жалпылауыш мәнді сөйлемнен кейін қос нүкте қойылады."}
+],
+combo:[
+  {t:"«Бірақ» жалғаулығы түсіп қалған екі сөйлем арасына қандай белгілер бірге қойылады?", opts:["Үтір, содан кейін сызықша","Тек сызықша","Тек қос нүкте"], c:0, exp:"Жалғаулықтар түсіп қалғанда, екі сөйлем арасына әуелі үтір, одан кейін сызықша қойылады."},
+  {t:"“Өзім алып шығайын”, [ ? ] деп ойлады Бүркітбай. Тырнақшадан кейін не қойылады?", opts:["Үтір, содан кейін сызықша","Тек нүкте","Тек леп белгісі"], c:0, exp:"Үтір мен нүкте, солай сызықша да, тырнақшадан соң қойылады."},
+  {t:"Жақша ішіндегі мәтінге қатысты леп/сұрау белгісі қайда тұрады, ал жалпы сөйлемнің белгісі қайда?", opts:["Ішкі белгі жақша ішінде, сыртқы белгі жақшадан кейін","Екеуі де жақша ішінде","Екеуі де жақшадан кейін"], c:0, exp:"Жақша ішіндегі текске қатысты белгі — ішінде, жалпы сөйлемге тиісті белгі — жақшадан сыртта қойылады."},
+  {t:"«Дефис» пен «сызықша» негізінен немен ерекшеленеді?", opts:["Дефис қысқа, сөз ішінде; сызықша ұзын, сөйлем мүшелерін бөледі","Екеуі бірдей белгі","Дефис тек цифрларда қолданылады"], c:0, exp:"Дефис — сөздің құрамындағы бөліктерді байланыстыратын қысқа белгі, ал сызықша — сөйлемдегі мағыналық-грамматикалық байланысты көрсететін толық белгі."},
+  {t:"Сұрау және леп белгісі көп нүктемен қабаттасқанда, неше нүкте қатар қойылады?", opts:["Екі нүкте (үш емес)","Үш нүкте толық","Бір нүкте ғана"], c:0, exp:"Сұрау/леп белгісі көп нүктемен қабаттасқанда, әуелі сол белгі, одан кейін қатар екі (үш емес) нүкте қойылады: ?.. немесе !.."}
+]
+};
+
+/* ======================================================================
+   РЕНДЕРИНГ
+====================================================================== */
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function nl2br(s){ return esc(s).replace(/\n/g,"<br><br>"); }
+
+function buildSidebar(){
+  const wrap = document.getElementById("sidebarRules");
+  wrap.innerHTML = CATEGORY_ORDER.map(id=>{
+    const r = RULES[id];
+    return `<a class="nav-link" data-page="${id}" onclick="showPage('${id}')">
+      <span class="sym">${esc(r.symbol)}</span>${esc(r.title)}
+      <span class="prog-dot" id="prog_${id}"></span>
+    </a>`;
+  }).join("");
+}
+
+function buildHomeCards(){
+  const wrap = document.getElementById("homeCards");
+  wrap.innerHTML = CATEGORY_ORDER.map(id=>{
+    const r = RULES[id];
+    return `<div class="card" onclick="showPage('${id}')">
+      <div class="card-icon">${esc(r.symbol)}</div>
+      <h3>${esc(r.title)}</h3>
+      <p>${esc(r.subtitle)}</p>
+      <div class="cprog" id="homeprog_${id}"></div>
+    </div>`;
+  }).join("");
+}
+
+function renderRuleBody(item){
+  if (typeof item === "string"){
+    return `<div class="rule-body">${nl2br(item)}</div>`;
+  }
+  let html = `<div class="rule-body">${nl2br(item.text)}</div>`;
+  if (item.ex){
+    html += `<div class="rule-example">${nl2br(item.ex)}${item.src ? `<div class="rule-src">— ${esc(item.src)}</div>` : ""}</div>`;
+  }
+  return html;
+}
+
+function buildRulePages(){
+  const wrap = document.getElementById("ruleContainer");
+  wrap.innerHTML = CATEGORY_ORDER.map(id=>{
+    const r = RULES[id];
+    const rulesHtml = r.rules.map((item,i)=>`
+      <div class="rule-card">
+        <div class="rule-head"><span class="rule-num">${i+1}</span>
+        ${renderRuleBody(item)}</div>
+      </div>`).join("");
+    const notesHtml = r.notes ? `<div class="note-box"><strong>Ескертулер:</strong><br>${r.notes.map((n,i)=>`${i+1}) ${esc(n)}`).join("<br>")}</div>` : "";
+    const tasksHtml = buildTasksHtml(id);
+    return `
+    <section id="${id}" class="page">
+      <div class="crumb">Ережелер</div>
+      <h1>${esc(r.title)} (${esc(r.symbol)})</h1>
+      <p class="subtitle">${esc(r.subtitle)}</p>
+      ${r.note ? `<div class="note-box">${esc(r.note)}</div>` : ""}
+      <div class="chargrid"><div class="big">${esc(r.symbol)}</div><div class="lbl">${esc(r.title)}<br>${r.rules.length} ереже</div></div>
+      <div class="rule-list">${rulesHtml}</div>
+      ${notesHtml}
+      <div class="section-title-lg">Тапсырмалар</div>
+      ${tasksHtml}
+    </section>`;
+  }).join("");
+}
+
+function buildTasksHtml(catId){
+  const tasks = TASKS[catId] || [];
+  return tasks.map((task,i)=>{
+    const taskId = `${catId}_${i+1}`;
+    const optsHtml = task.opts.map((opt,oi)=>
+      `<button class="option" onclick="answerTask('${taskId}', ${oi}, ${task.c}, this)">${esc(opt)}</button>`
+    ).join("");
+    return `
+    <div class="exercise" id="ex_${taskId}">
+      <span class="exercise-number">${i+1}-ТАПСЫРМА</span>
+      <p class="question">${esc(task.t)}</p>
+      <div class="options">${optsHtml}</div>
+      <div class="result" id="res_${taskId}"></div>
+      <div class="explain" id="exp_${taskId}" style="display:none;">${esc(task.exp)}</div>
+    </div>`;
+  }).join("");
+}
+
+/* ======================================================================
+   ЖАТТЫҒУ ЛОГИКАСЫ + ПРОГРЕСС САҚТАУ
+====================================================================== */
+window.answerTask = async function(taskId, chosenIdx, correctIdx, btn){
+  const exercise = btn.closest(".exercise");
+  const buttons = exercise.querySelectorAll(".option");
+  buttons.forEach(b=>{ b.disabled = true; b.classList.remove("correct","wrong"); });
+
+  const isCorrect = chosenIdx === correctIdx;
+  const result = document.getElementById(`res_${taskId}`);
+  const expDiv = document.getElementById(`exp_${taskId}`);
+
+  if (isCorrect){
+    btn.classList.add("correct");
+    result.innerHTML = "✓ Дұрыс жауап! Жарайсың!";
+    result.style.color = "#03875b";
+  } else {
+    btn.classList.add("wrong");
+    buttons[correctIdx].classList.add("correct");
+    result.innerHTML = "✗ Қате жауап. Дұрыс жауап жасыл түспен көрсетілді.";
+    result.style.color = "#d64545";
+  }
+  expDiv.style.display = "block";
+
+  await saveProgress(taskId, isCorrect);
+  refreshProgressUI();
+};
+
+async function saveProgress(taskId, isCorrect){
+  if (currentUser && supabaseReady){
+    try{
+      await supabase.from("user_progress").upsert({
+        user_id: currentUser.id, task_id: taskId, is_correct: isCorrect, attempts: 1
+      }, { onConflict: "user_id,task_id" });
+    }catch(e){ console.warn("Прогресті сақтау қатесі:", e); }
+  } else {
+    localProgress[taskId] = { is_correct: isCorrect };
+    saveLocalProgress();
+  }
+}
+
+async function fetchAllProgress(){
+  if (currentUser && supabaseReady){
+    try{
+      const { data, error } = await supabase.from("user_progress").select("task_id,is_correct").eq("user_id", currentUser.id);
+      if (error) throw error;
+      const map = {};
+      (data||[]).forEach(row=>{ map[row.task_id] = { is_correct: row.is_correct }; });
+      return map;
+    }catch(e){ console.warn(e); return {}; }
+  }
+  return localProgress;
+}
+
+async function refreshProgressUI(){
+  const progress = await fetchAllProgress();
+  let totalTasks = 0, totalDone = 0, totalCorrect = 0;
+  CATEGORY_ORDER.forEach(id=>{
+    const tasks = TASKS[id] || [];
+    let done = 0, correct = 0;
+    tasks.forEach((_,i)=>{
+      const key = `${id}_${i+1}`;
+      if (progress[key]){ done++; if (progress[key].is_correct) correct++; }
+    });
+    totalTasks += tasks.length; totalDone += done; totalCorrect += correct;
+    const dot = document.getElementById(`prog_${id}`);
+    if (dot) dot.textContent = done > 0 ? `${done}/${tasks.length}` : "";
+    const cprog = document.getElementById(`homeprog_${id}`);
+    if (cprog) cprog.textContent = done > 0 ? `Орындалды: ${done}/${tasks.length}` : "Әлі басталмаған";
+  });
+  renderCabinet(progress, totalTasks, totalDone, totalCorrect);
+}
+
+function renderCabinet(progress, totalTasks, totalDone, totalCorrect){
+  const wrap = document.getElementById("cabinetContent");
+  if (!currentUser){
+    wrap.innerHTML = `<div class="login-cta">
+      <h3>Прогресіңізді сақтау үшін кіріңіз</h3>
+      <p class="subtitle" style="margin:8px auto 0;">Есептік жазба ашсаңыз, тапсырма нәтижелеріңіз дерекқорда сақталып, кез келген құрылғыдан қол жеткізе аласыз. Есептік жазбасыз да тапсырмаларды шеше аласыз — нәтиже осы браузерде сақталады.</p>
+      <button class="hdr-btn solid" style="color:#04AA6D;margin-top:14px;" onclick="openModal('signup')">Тіркелу</button>
+    </div>`;
+    return;
+  }
+  const acc = totalDone>0 ? Math.round(100*totalCorrect/totalDone) : 0;
+  let html = `<div class="stat-row">
+    <div class="stat-box"><div class="num">${totalDone}/${totalTasks}</div><div class="lbl">Орындалған тапсырма</div></div>
+    <div class="stat-box"><div class="num">${totalCorrect}</div><div class="lbl">Дұрыс жауап</div></div>
+    <div class="stat-box"><div class="num">${acc}%</div><div class="lbl">Дәлдік</div></div>
+  </div>`;
+  CATEGORY_ORDER.forEach(id=>{
+    const r = RULES[id]; const tasks = TASKS[id]||[];
+    let done = 0;
+    tasks.forEach((_,i)=>{ if (progress[`${id}_${i+1}`]) done++; });
+    const pct = tasks.length ? Math.round(100*done/tasks.length) : 0;
+    html += `<div class="cabinet-cat">
+      <div class="sym2">${esc(r.symbol)}</div>
+      <div style="flex:1;">
+        <div style="font-weight:600;font-size:14.5px;margin-bottom:6px;">${esc(r.title)}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;"></div></div>
+      </div>
+      <div class="pct">${pct}%</div>
+    </div>`;
+  });
+  wrap.innerHTML = html;
+}
+
+/* ======================================================================
+   НАВИГАЦИЯ
+====================================================================== */
+window.showPage = function(pageId){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active-page"));
+  const el = document.getElementById(pageId);
+  if (el) el.classList.add("active-page");
+  document.querySelectorAll(".nav-link").forEach(l=>l.classList.remove("active"));
+  const link = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+  if (link) link.classList.add("active");
+  document.querySelector("main").scrollTop = 0;
+  if (pageId === "cabinet") refreshProgressUI();
+};
+
+window.revealBlank = function(){};
+window.revealBlank = function(n){
+  document.getElementById(`wb${n}`).classList.add("revealed");
+  const b1 = document.getElementById("wb1").classList.contains("revealed");
+  const b2 = document.getElementById("wb2").classList.contains("revealed");
+  if (b1 && b2) document.getElementById("weeklyReveal").style.display = "block";
+};
+
+window.searchRules = function(e){
+  if (e.key && e.key !== "Enter") return;
+  const q = document.getElementById("searchInput").value.toLowerCase().trim();
+  if (!q) return;
+  for (const id of CATEGORY_ORDER){
+    if (RULES[id].title.toLowerCase().includes(q) || id.includes(q)){ showPage(id); return; }
+  }
+  if (q.includes("ai") || q.includes("тексеру")) showPage("ai");
+  else if (q.includes("апта")) showPage("weekly");
+  else if (q.includes("кабинет") || q.includes("прогресс")) showPage("cabinet");
+};
+
+/* ======================================================================
+   AI ТЕКСЕРУ (demo)
+====================================================================== */
+window.checkText = function(){
+  const text = document.getElementById("textToCheck").value.trim();
+  const result = document.getElementById("aiResult");
+  const aiText = document.getElementById("aiText");
+  if (text === ""){ result.style.display = "block"; aiText.innerHTML = "Алдымен мәтін енгізіңіз."; return; }
+  let corrected = text;
+  if (!/[.!?…]$/.test(corrected)) corrected += ".";
+  aiText.innerHTML = "Мәтін тексерілді:<br><br><strong>" + esc(corrected) + "</strong><br><br>⚠️ Бұл Punctum Beta нұсқасындағы демонстрациялық тексеру. Толық AI тексеру жүйесі Claude API арқылы кейін қосылады.";
+  result.style.display = "block";
+};
+
+/* ======================================================================
+   АУТЕНТИФИКАЦИЯ (Supabase Auth)
+====================================================================== */
+window.openModal = function(mode){
+  document.getElementById("modalOverlay").classList.add("open");
+  document.getElementById("modalLogin").style.display = mode === "login" ? "block" : "none";
+  document.getElementById("modalSignup").style.display = mode === "signup" ? "block" : "none";
+  document.getElementById("loginMsg").textContent = "";
+  document.getElementById("signupMsg").textContent = "";
+};
+window.closeModal = function(){ document.getElementById("modalOverlay").classList.remove("open"); };
+
+window.doSignup = async function(){
+  const name = document.getElementById("signupName").value.trim();
+  const email = document.getElementById("signupEmail").value.trim();
+  const pass = document.getElementById("signupPass").value;
+  const msg = document.getElementById("signupMsg");
+  if (!supabaseReady){ msg.textContent = "Supabase қосылмаған (SUPABASE_URL мен SUPABASE_ANON_KEY толтырылмаған)."; msg.className = "modal-msg err"; return; }
+  if (!email || !pass){ msg.textContent = "Email мен құпия сөзді толтырыңыз."; msg.className = "modal-msg err"; return; }
+  msg.textContent = "Тіркелуде..."; msg.className = "modal-msg";
+  const { data, error } = await supabase.auth.signUp({ email, password: pass, options:{ data:{ full_name:name } } });
+  if (error){ msg.textContent = error.message; msg.className = "modal-msg err"; return; }
+  msg.textContent = "Тіркелу сәтті өтті! Email-іңізді растаңыз да, кіріңіз."; msg.className = "modal-msg ok";
+};
+
+window.doLogin = async function(){
+  const email = document.getElementById("loginEmail").value.trim();
+  const pass = document.getElementById("loginPass").value;
+  const msg = document.getElementById("loginMsg");
+  if (!supabaseReady){ msg.textContent = "Supabase қосылмаған (SUPABASE_URL мен SUPABASE_ANON_KEY толтырылмаған)."; msg.className = "modal-msg err"; return; }
+  if (!email || !pass){ msg.textContent = "Email мен құпия сөзді толтырыңыз."; msg.className = "modal-msg err"; return; }
+  msg.textContent = "Кіруде..."; msg.className = "modal-msg";
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password: pass });
+  if (error){ msg.textContent = error.message; msg.className = "modal-msg err"; return; }
+  currentUser = data.user;
+  closeModal();
+  updateAuthUI();
+  refreshProgressUI();
+};
+
+window.doLogout = async function(){
+  if (supabaseReady) await supabase.auth.signOut();
+  currentUser = null;
+  updateAuthUI();
+  refreshProgressUI();
+};
+
+function updateAuthUI(){
+  const area = document.getElementById("authArea");
+  if (currentUser){
+    const label = currentUser.user_metadata && currentUser.user_metadata.full_name ? currentUser.user_metadata.full_name : currentUser.email;
+    area.innerHTML = `<span class="user-chip">👤 <b>${esc(label)}</b></span>
+      <button class="hdr-btn" onclick="doLogout()">Шығу</button>`;
+  } else {
+    area.innerHTML = `<button class="hdr-btn" onclick="openModal('login')">Кіру</button>
+      <button class="hdr-btn solid" onclick="openModal('signup')">Тіркелу</button>`;
+  }
+}
+
+async function initAuth(){
+  if (supabaseReady){
+    const { data } = await supabase.auth.getSession();
+    if (data && data.session) currentUser = data.session.user;
+    supabase.auth.onAuthStateChange((_event, session)=>{
+      currentUser = session ? session.user : null;
+      updateAuthUI();
+      refreshProgressUI();
+    });
+  }
+  updateAuthUI();
+}
+
+/* ======================================================================
+   ІСКЕ ҚОСУ
+====================================================================== */
+buildSidebar();
+buildHomeCards();
+buildRulePages();
+initAuth();
+refreshProgressUI();
+</script>
+
+</body>
+</html>
