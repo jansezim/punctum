@@ -422,7 +422,7 @@ let supabase = null;
 let supabaseReady = false;
 try {
   const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
-  if (!SUPABASE_URL.includes("YOUR-PROJECT-ID")) {
+  if (!SUPABASE_URL.includes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9iZ2Njd3N4eGhteGx3dXhrd2VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3NTI1NTcsImV4cCI6MjEwNDMyODU1N30.NKbEFJGOAKI3K15D7DvyHXTuIDmzYymliBKN5EwMtmE")) {
     supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     supabaseReady = true;
   }
